@@ -39,7 +39,7 @@ https://pypistats.org/packages/mlx90641-driver-devicetree
 * pen a terminal and run following command:  
 
 ```bash
-mlx90641-dump-devicetree auto
+mlx90641-dump-devicetree /dev/i2c-1
 ```
 
 This program takes 1 optional argument.

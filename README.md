@@ -12,7 +12,7 @@ It uses the I2C from the device tree of a single board computer(SBC).
 
 Milestones:
 - [x] Raspberry pi + devicetree (`/dev/i2c-<x>`)
-- [ ] Jetson Nano + devicetree (`/dev/i2c-<x>`)
+- [x] Jetson Nano + devicetree (`/dev/i2c-<x>`)
 - [ ] BeagleBone + devicetree (`/dev/i2c-<x>`)
 
 

@@ -2,7 +2,7 @@ from setuptools import setup
 
 version = '0.0.0'
 
-requires = []
+requires = ['mlx90641-driver>=0.1.0']
 
 with open("README.md", "r") as fh:
     long_description = fh.read()

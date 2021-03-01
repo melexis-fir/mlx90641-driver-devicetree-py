@@ -27,9 +27,7 @@ endif
 
 CFLAGS:=-Wall -Wextra -Wstrict-prototypes -Wunused-result -Wno-stringop-truncation -O3 -std=c99 -fmessage-length=0 -fPIC -I../libs -Iinc
 
-ifeq ($(MACHINE),armv7l)
-	CFLAGS+=-D_BSD_SOURCE
-endif
+CFLAGS+=$(CFLAGS_EXTRA)
 
 kva:
 	echo $(detected_OS)

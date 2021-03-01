@@ -16,6 +16,7 @@ jobs:
     env:
       AR: /pitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-ar
       CC: /pitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc
+      CFLAGS_EXTRA: '-D_BSD_SOURCE'
     steps:
     - uses: actions/checkout@v2
     - run: make -C devicetree/c-code clean all -e MACHINE=armv7l -e LIB_RESULT_DIR=builded
@@ -31,6 +32,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: make -C devicetree/c-code clean all -e LIB_RESULT_DIR=builded
+    - uses: actions/upload-artifact@master
+      with:
+        name: bin_linux_pc
+        path: devicetree/c-code/builded
   build-win10-pc:
     runs-on: ubuntu-latest
     steps:

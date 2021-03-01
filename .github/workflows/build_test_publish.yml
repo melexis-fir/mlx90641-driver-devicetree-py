@@ -2,7 +2,9 @@ name: build-test-publish
 
 on:
   push:
-    
+    branches:
+      - master
+
   release:
     types: [created]
 
@@ -11,10 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mitchallen/pi-cross-compile
+    env:
+      AR: /pitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-ar
+      CC: /pitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc
     steps:
     - uses: actions/checkout@v2
-    - run: export AR=/pitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-ar
-    - run: export CC=/pitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc
     - run: make -C devicetree/c-code clean all -e MACHINE=armv7l -e LIB_RESULT_DIR=builded
     - uses: actions/upload-artifact@master
       with:

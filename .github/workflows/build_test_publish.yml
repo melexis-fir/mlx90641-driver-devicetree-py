@@ -75,7 +75,6 @@ jobs:
       - build-linux-pc
     steps:
     - uses: actions/checkout@v2
-    - run: rm -rfv devicetree/libs
     - uses: actions/download-artifact@master
       with:
         name: bin_rpi4
@@ -88,8 +87,6 @@ jobs:
       with:
         name: bin_jetson_nano
         path: devicetree/libs
-    - run: find . -type f
-    - run: ls -al devicetree/libs/armv7l
     - name: Set up Python
       uses: actions/setup-python@v1
       with:

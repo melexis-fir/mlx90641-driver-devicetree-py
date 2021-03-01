@@ -68,7 +68,7 @@ jobs:
 
   publish-pypi:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'release' && github.type == 'created'
+    if:   github.event_name == 'release' && github.event.action == 'created'
     needs:
       - build-rpi4
       - build-jetson-nano
@@ -108,19 +108,19 @@ jobs:
 
   test-on-rpi4:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'release' && github.type == 'created'
+    if:   github.event_name == 'release' && github.event.action == 'created'
     needs: [publish-pypi]
     steps:
     - uses: actions/checkout@v2
   test-on-jetson-nano:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'release' && github.type == 'created'
+    if:   github.event_name == 'release' && github.event.action == 'created'
     needs: [publish-pypi]
     steps:
     - uses: actions/checkout@v2
   test-on-linux-pc:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'release' && github.type == 'created'
+    if:   github.event_name == 'release' && github.event.action == 'created'
     needs: [publish-pypi]
     steps:
     - uses: actions/checkout@v2

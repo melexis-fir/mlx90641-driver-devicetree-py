@@ -11,7 +11,6 @@ on:
 jobs:
   build-rpi4:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'push'
     container:
       image: mitchallen/pi-cross-compile
     env:
@@ -27,7 +26,6 @@ jobs:
         path: devicetree/c-code/builded
   build-jetson-nano:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'push'
     container:
       image: kv76/cross_compile_jetson_nano:latest
     env:
@@ -43,7 +41,6 @@ jobs:
         path: devicetree/c-code/builded
   build-linux-pc:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'push'
     steps:
     - uses: actions/checkout@v2
     - run: make -C devicetree/c-code clean all -e LIB_RESULT_DIR=builded
@@ -54,19 +51,16 @@ jobs:
 
   unittest-rpi4:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'push'
     needs: [build-rpi4]
     steps:
     - uses: actions/checkout@v2
   unittest-jetson-nano:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'push'
     needs: [build-jetson-nano]
     steps:
     - uses: actions/checkout@v2
   unittest-linux-pc:
     runs-on: ubuntu-latest
-    if:   github.event_name == 'push'
     needs: [build-linux-pc]
     steps:
     - uses: actions/checkout@v2

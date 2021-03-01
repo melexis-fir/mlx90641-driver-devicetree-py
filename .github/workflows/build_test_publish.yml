@@ -59,9 +59,9 @@ jobs:
     - uses: actions/checkout@v2
     - run: rm -rfv devicetree/libs
     - uses: actions/download-artifact@master
-        with:
-          name: bin_rpi4
-          path: devicetree/libs
+      with:
+        name: bin_rpi4
+        path: devicetree/libs
     - run: find . -type f
     - run: ls -al devicetree/libs/armv7l
     - name: Set up Python

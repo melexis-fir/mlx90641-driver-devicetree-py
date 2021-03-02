@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - master
-
   release:
-    types: [created]
+    types: 
+      - created
 
 jobs:
   build-rpi4:
@@ -49,19 +49,12 @@ jobs:
         name: bin_linux_pc
         path: devicetree/c-code/builded
 
-  unittest-rpi4:
+  unittest:
     runs-on: ubuntu-latest
-    needs: [build-rpi4]
-    steps:
-    - uses: actions/checkout@v2
-  unittest-jetson-nano:
-    runs-on: ubuntu-latest
-    needs: [build-jetson-nano]
-    steps:
-    - uses: actions/checkout@v2
-  unittest-linux-pc:
-    runs-on: ubuntu-latest
-    needs: [build-linux-pc]
+    needs:
+      - build-rpi4
+      - build-jetson-nano
+      - build-linux-pc
     steps:
     - uses: actions/checkout@v2
 
@@ -70,9 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     if:   github.event_name == 'release' && github.event.action == 'created'
     needs:
-      - build-rpi4
-      - build-jetson-nano
-      - build-linux-pc
+      - unittest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@master

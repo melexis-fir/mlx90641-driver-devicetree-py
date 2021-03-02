@@ -26,7 +26,7 @@ jobs:
          pip --version
          pip install --no-input mlx90641-driver-devicetree --upgrade
          pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
-         python -m pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-jetson-nano-report.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
     - uses: actions/upload-artifact@master
       with:
         name: test_report

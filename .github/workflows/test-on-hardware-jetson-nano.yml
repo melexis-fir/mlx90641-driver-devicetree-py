@@ -17,29 +17,14 @@ jobs:
       - hw_mlx90641
     steps:
     - uses: actions/checkout@v2
+    - run: virtualenv --version
     - run: virtualenv venv
     - run: source venv/bin/activate
+    - run: python --version
+    - run: pip --version
     - run: pip install --no-input mlx90641-driver-devicetree --upgrade
     - run: pip install --no-input pytest pytest-order pytest-html pytest-metadata
-    - run: pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
-    - uses: actions/upload-artifact@master
-      with:
-        name: test_report
-        path: public
-  test-on-hardware2:
-    runs-on: 
-      - self-hosted
-      - linux
-      - jetson-nano
-      - hw_mlx90641
-    needs: [test-on-hardware]
-    steps:
-    - uses: actions/checkout@v2
-    - run: virtualenv venv
-    - run: source venv/bin/activate
-    - run: pip install --no-input mlx90641-driver-devicetree --upgrade
-    - run: pip install --no-input pytest pytest-order pytest-html pytest-metadata
-    - run: python -m pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report2.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
+    - run: python -m pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
     - uses: actions/upload-artifact@master
       with:
         name: test_report

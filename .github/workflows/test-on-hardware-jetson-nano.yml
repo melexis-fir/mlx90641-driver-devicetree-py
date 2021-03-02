@@ -39,7 +39,7 @@ jobs:
     - run: source venv/bin/activate
     - run: pip install --no-input mlx90641-driver-devicetree --upgrade
     - run: pip install --no-input pytest pytest-order pytest-html pytest-metadata
-    - run: pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report2.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
+    - run: python -m pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report2.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
     - uses: actions/upload-artifact@master
       with:
         name: test_report

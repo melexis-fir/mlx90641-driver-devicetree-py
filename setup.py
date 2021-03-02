@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.1.0'
+version = '1.1.1'
 
 requires = ['mlx90641-driver>=1.1.0']
 
@@ -10,13 +10,14 @@ with open("README.md", "r") as fh:
 setup(
     name='mlx90641-driver-devicetree',
     version=version,
-    description='I2C for MLX90641 suing device tree (raspberry pi, jetson nano, beagle bone, ...)',
+    description='I2C for MLX90641 using device tree (raspberry pi, jetson nano, beagle bone, ...)',
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='Apache License, Version 2.0',
     # entry_points = {'console_scripts': ['mlx90641-dump-frame = mlx.examples.mlx90640_dump_frame:main']},
     entry_points={'console_scripts': []},
     install_requires=requires,
+    python_requires='>=3.6',
     url='https://github.com/melexis-fir/mlx90641-driver-devicetree-py',
     # Provide either the link to your github or to your website
     download_url='https://github.com/melexis-fir/mlx90641-driver-devicetree-py/archive/V' + version + '.tar.gz',
@@ -31,7 +32,7 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
-        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Utilities',
     ],
 )

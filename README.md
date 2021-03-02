@@ -30,8 +30,8 @@ And easy way to do this is by adding the user to the group `i2c`.
 
 ### Running the driver demo
 
-* Connect the EVB to your PC.  
-* pen a terminal and run following command:  
+* Connect the MLX90641 on the I2C bus of the SBC.  
+* Open a terminal and run following command:  
 
 ```bash
 mlx90641-dump-devicetree /dev/i2c-1

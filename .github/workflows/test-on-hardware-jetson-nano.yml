@@ -17,17 +17,16 @@ jobs:
       - hw_mlx90641
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.6.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-    - run: virtualenv --version
-    - run: virtualenv venv
-    - run: source venv/bin/activate
-    - run: python --version
-    - run: pip --version
-    - run: pip install --no-input mlx90641-driver-devicetree --upgrade
-    - run: pip install --no-input pytest pytest-order pytest-html pytest-metadata
-    - run: python -m pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
+    - name: Create virtual env and run tests
+      run: |
+         virtualenv --version
+         virtualenv venv
+         source venv/bin/activate
+         python --version
+         pip --version
+         pip install --no-input mlx90641-driver-devicetree --upgrade
+         pip install --no-input pytest pytest-order pytest-html pytest-metadata
+         python -m pytest -v tests/app_testing --html=public/app-tests-jetson-nano-report.html --self-contained-html  --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
     - uses: actions/upload-artifact@master
       with:
         name: test_report

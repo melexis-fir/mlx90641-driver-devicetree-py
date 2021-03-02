@@ -4,7 +4,7 @@
 
 ![PyPI](https://img.shields.io/pypi/v/mlx90641-driver-devicetree) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mlx90641-driver-devicetree) ![PyPI - License](https://img.shields.io/pypi/l/mlx90641-driver-devicetree)  
 
-![platform](https://img.shields.io/badge/platform-win10%20%7C%20linux%20PC%20%7C%20rasberry%20pi%204%20%7C%20Jetson%20Nano%20%7C%20beagle%20bone-lightgrey)  
+![platform](https://img.shields.io/badge/platform-linux%20PC%20%7C%20rasberry%20pi%204%20%7C%20Jetson%20Nano%20%7C%20beagle%20bone-lightgrey)  
 
 MLX90641 is a thermal camera (16x12 pixels) using Far InfraRed radiation from objects to measure the object temperature.  
 https://www.melexis.com/mlx90641  

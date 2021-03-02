@@ -1,4 +1,4 @@
-name: test-on-hardware-jetson-nano
+name: test-on-hardware-linux-pc
 
 on:
   workflow_dispatch:

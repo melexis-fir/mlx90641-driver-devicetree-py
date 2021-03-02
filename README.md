@@ -5,26 +5,19 @@
 This package provide the I2C routines for the required package `mlx90641-driver-py`.
 It uses the I2C from the device tree of a single board computer(SBC).  
 
-- rasberry pi
-- jetson nano (NVidia)
-- beagle bone
-
-
 Milestones:
 - [x] Raspberry pi + devicetree (`/dev/i2c-<x>`)
 - [x] Jetson Nano + devicetree (`/dev/i2c-<x>`)
+- [x] Linux PC + devicetree (`/dev/i2c-<x>`)
 - [ ] BeagleBone + devicetree (`/dev/i2c-<x>`)
-
 
 ## Dependencies
 
-Driver:
 - Python3
 
 ## Getting started
 
 ### Installation
-
 
 ```bash
 pip install mlx90641-driver-devicetree
@@ -32,6 +25,10 @@ pip install mlx90641-driver-devicetree
 
 https://pypi.org/project/mlx90641-driver-devicetree  
 https://pypistats.org/packages/mlx90641-driver-devicetree
+
+__Note:__  
+Make sure the user has access to `/dev/i2c-<x>`.  
+And easy way to do this is by adding the user to the group `i2c`.
 
 ### Running the driver demo
 

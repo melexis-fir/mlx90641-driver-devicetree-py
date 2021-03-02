@@ -17,3 +17,7 @@ jobs:
       - hw_mlx90641
     steps:
     - uses: actions/checkout@v2
+    - run: virtualenv venv
+    - run: source venv/bin/activate
+    - run: pip install --no-input mlx9041-driver-devicetree --upgrade
+    - run: python mlx90641_dump.py

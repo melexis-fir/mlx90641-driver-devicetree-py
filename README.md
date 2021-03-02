@@ -8,7 +8,7 @@
 
 MLX90641 is a thermal camera (16x12 pixels) using Far InfraRed radiation from objects to measure the object temperature.  
 https://www.melexis.com/mlx90641  
-The python package "[mlx90641-driver](https://github.com/melexis-fir/mlx90641-driver-py)" driver interfaces the MLX90641 and aims to facilitate the interfacing for prototyping applications.
+The python package "[mlx90641-driver](https://github.com/melexis-fir/mlx90641-driver-py)" driver interfaces the MLX90641 and aims to facilitate rapid prototyping.
 
 This package provide the I2C low level routines.
 It uses the I2C from the device tree of a single board computer(SBC).  

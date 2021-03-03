@@ -104,11 +104,20 @@ jobs:
          pip install --no-input mlx90641-driver-devicetree --upgrade
          pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
          python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-jetson-nano-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
+#     - name: Publish Test Results
+#       uses: EnricoMi/publish-unit-test-result-action@v1
+#       if: always()
+#       with:
+#         files: public/**/*
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       if: always()
       with:
-        files: public/**/*
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: public/*
+        tag: V1.1.7
+        overwrite: true
+        file_glob: true
     - uses: actions/upload-artifact@master
       with:
         name: test_report

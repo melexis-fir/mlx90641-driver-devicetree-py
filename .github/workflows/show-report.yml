@@ -1,4 +1,4 @@
-name: test-on-hardware-jetson-nano
+name: show-report
 
 on:
   workflow_dispatch:

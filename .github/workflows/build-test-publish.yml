@@ -104,6 +104,11 @@ jobs:
          pip install --no-input mlx90641-driver-devicetree --upgrade
          pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
          python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-jetson-nano-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: public/**/*
     - uses: actions/upload-artifact@master
       with:
         name: test_report
@@ -126,6 +131,11 @@ jobs:
          pip install --no-input mlx90641-driver-devicetree --upgrade
          pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
          python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-rpi4-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Raspberry Pi 4'
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: public/**/*
     - uses: actions/upload-artifact@master
       with:
         name: test_report
@@ -152,22 +162,3 @@ jobs:
 #       with:
 #         name: test_report
 #         path: public
-
-  publish-pages:
-    runs-on: ubuntu-latest
-    needs: 
-      - test-on-hardware-raspberry-pi-4
-      - test-on-hardware-jetson-nano
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/download-artifact@master
-      with:
-        name: test_report
-        path: __pages/reports
-    - run: echo "hi" > __pages/index.html
-    - run: find .
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.0.0
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: __pages # The folder the action should deploy.

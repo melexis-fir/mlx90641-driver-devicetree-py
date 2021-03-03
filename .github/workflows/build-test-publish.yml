@@ -130,25 +130,41 @@ jobs:
       with:
         name: test_report
         path: public
-  test-on-hardware-linux-pc:
-    environment:
-      name: linux-pc|devicetree|hw90641
-    needs:
-      - publish-pypi
-    runs-on: 
-      - self-hosted
-      - linux
-      - ubuntu
+#   test-on-hardware-linux-pc:
+#     environment:
+#       name: linux-pc|devicetree|hw90641
+#     needs:
+#       - publish-pypi
+#     runs-on: 
+#       - self-hosted
+#       - linux
+#       - ubuntu
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Create virtual env and run tests
+#       run: |
+#          virtualenv venv
+#          source venv/bin/activate
+#          pip install --no-input mlx90641-driver-devicetree --upgrade
+#          pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
+#          python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-linux-pc-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-6 --metadata host_hardware 'Jetson Nano'
+#     - uses: actions/upload-artifact@master
+#       with:
+#         name: test_report
+#         path: public
+
+  publish-pages:
+    runs-on: ubuntu-latest
+    needs: 
+      - test-on-hardware-raspberry-pi-4
+      - test-on-hardware-jetson-nano
     steps:
-    - uses: actions/checkout@v2
-    - name: Create virtual env and run tests
-      run: |
-         virtualenv venv
-         source venv/bin/activate
-         pip install --no-input mlx90641-driver-devicetree --upgrade
-         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
-         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-linux-pc-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-6 --metadata host_hardware 'Jetson Nano'
-    - uses: actions/upload-artifact@master
+    - uses: actions/download-artifact@master
       with:
         name: test_report
-        path: public
+        path: __pages/reports
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: __pages # The folder the action should deploy.

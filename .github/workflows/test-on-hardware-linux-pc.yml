@@ -17,3 +17,14 @@ jobs:
       - hw_mlx90641
     steps:
     - uses: actions/checkout@v2
+    - name: Create virtual env and run tests
+      run: |
+         virtualenv venv
+         source venv/bin/activate
+         pip install --no-input mlx90641-driver-devicetree --upgrade
+         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-linux-pc-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-6 --metadata host_hardware 'Jetson Nano'
+    - uses: actions/upload-artifact@master
+      with:
+        name: test_report
+        path: public

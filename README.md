@@ -1,8 +1,8 @@
 # MLX90641 driver for device tree on a SBC.
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/melexis-fir/mlx90641-driver-devicetree-py?label=github-latest-release-tag) ![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/melexis-fir/mlx90641-driver-devicetree-py/build-test-publish?event=release&label=github-workflow) ![Lines of code](https://img.shields.io/tokei/lines/github/melexis-fir/mlx90641-driver-devicetree-py)  
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/melexis-fir/mlx90641-driver-devicetree-py?label=github-latest-release-tag)](https://github.com/melexis-fir/mlx90641-driver-devicetree-py/releases) [![GitHub Workflow Status](https://github.com/melexis-fir/mlx90641-driver-devicetree-py/workflows/build-test-publish/badge.svg)](https://github.com/melexis-fir/mlx90641-driver-devicetree-py/actions?query=event%3Arelease) ![Lines of code](https://img.shields.io/tokei/lines/github/melexis-fir/mlx90641-driver-devicetree-py)  
 
-![PyPI](https://img.shields.io/pypi/v/mlx90641-driver-devicetree) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mlx90641-driver-devicetree) ![PyPI - License](https://img.shields.io/pypi/l/mlx90641-driver-devicetree)  
+[![PyPI](https://img.shields.io/pypi/v/mlx90641-driver-devicetree)](https://pypi.org/project/mlx90641-driver-devicetree) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mlx90641-driver-devicetree) ![PyPI - License](https://img.shields.io/pypi/l/mlx90641-driver-devicetree)  
 
 ![platform](https://img.shields.io/badge/platform-linux%20PC%20%7C%20rasberry%20pi%204%20%7C%20Jetson%20Nano%20%7C%20beagle%20bone-lightgrey)  
 

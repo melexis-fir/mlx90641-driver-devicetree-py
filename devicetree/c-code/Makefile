@@ -26,13 +26,7 @@ MACHINE:=$(shell uname -m)
 endif
 
 CFLAGS:=-Wall -Wextra -Wstrict-prototypes -Wunused-result -Wno-stringop-truncation -O3 -std=c99 -fmessage-length=0 -fPIC -I../libs -Iinc
-
 CFLAGS+=$(CFLAGS_EXTRA)
-
-kva:
-	echo $(detected_OS)
-	echo $(MACHINE)
-
 
 all: $(SHARED_LIB_FILE) $(STATIC_LIB_FILE)
 

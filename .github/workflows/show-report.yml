@@ -9,7 +9,7 @@ on:
         default: 'warning'
 
 jobs:
-  test-on-hardware:
+  show-report:
     runs-on: 
       - self-hosted
       - linux
@@ -22,5 +22,6 @@ jobs:
       with:
         workflow: test-on-hardware-jetson-nano
         name: test_report
+        path: public
         workflow_conclusion: success
     - run: ls -al public

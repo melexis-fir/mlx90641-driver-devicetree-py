@@ -89,8 +89,8 @@ jobs:
   test-on-hardware-jetson-nano:
     environment:
       name: jetson-nano|devicetree|hw90641
-    needs:
-      - publish-pypi
+#     needs:
+#       - publish-pypi
     runs-on: 
       - self-hosted
       - linux
@@ -111,8 +111,8 @@ jobs:
   test-on-hardware-raspberry-pi-4:
     environment:
       name: raspberry-pi-4|devicetree|hw90641
-    needs:
-      - publish-pypi
+#     needs:
+#       - publish-pypi
     runs-on: 
       - self-hosted
       - linux
@@ -164,6 +164,8 @@ jobs:
       with:
         name: test_report
         path: __pages/reports
+    - run: echo "hi" > __pages/index.html
+    - run: find .
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:

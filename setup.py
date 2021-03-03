@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.1.5'
+version = '1.1.6'
 
 requires = ['mlx90641-driver>=1.1.0']
 

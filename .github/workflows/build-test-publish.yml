@@ -159,6 +159,7 @@ jobs:
       - test-on-hardware-raspberry-pi-4
       - test-on-hardware-jetson-nano
     steps:
+    - uses: actions/checkout@v2
     - uses: actions/download-artifact@master
       with:
         name: test_report

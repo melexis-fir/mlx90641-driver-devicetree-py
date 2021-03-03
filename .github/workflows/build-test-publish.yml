@@ -22,7 +22,7 @@ jobs:
     - run: make -C devicetree/c-code clean all -e MACHINE=armv7l -e LIB_RESULT_DIR=builded
     - uses: actions/upload-artifact@master
       with:
-        name: bin_rpi4
+        name: libraries
         path: devicetree/c-code/builded
   build-jetson-nano:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
     - run: make -C devicetree/c-code clean all -e MACHINE=aarch64 -e LIB_RESULT_DIR=builded
     - uses: actions/upload-artifact@master
       with:
-        name: bin_jetson_nano
+        name: libraries
         path: devicetree/c-code/builded
   build-linux-pc:
     runs-on: ubuntu-latest
@@ -46,7 +46,7 @@ jobs:
     - run: make -C devicetree/c-code clean all -e LIB_RESULT_DIR=builded
     - uses: actions/upload-artifact@master
       with:
-        name: bin_linux_pc
+        name: libraries
         path: devicetree/c-code/builded
 
   test-unittesting:
@@ -68,15 +68,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@master
       with:
-        name: bin_rpi4
-        path: devicetree/libs
-    - uses: actions/download-artifact@master
-      with:
-        name: bin_linux_pc
-        path: devicetree/libs
-    - uses: actions/download-artifact@master
-      with:
-        name: bin_jetson_nano
+        name: libraries
         path: devicetree/libs
     - name: Set up Python
       uses: actions/setup-python@v1
@@ -93,3 +85,70 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
         twine upload dist/*
+
+  test-on-hardware-jetson-nano:
+    environment:
+      name: jetson-nano|devicetree|hw90641
+    needs:
+      - publish-pypi
+    runs-on: 
+      - self-hosted
+      - linux
+      - jetson-nano
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create virtual env and run tests
+      run: |
+         virtualenv venv
+         source venv/bin/activate
+         pip install --no-input mlx90641-driver-devicetree --upgrade
+         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-jetson-nano-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
+    - uses: actions/upload-artifact@master
+      with:
+        name: test_report
+        path: public
+  test-on-hardware-raspberry-pi-4:
+    environment:
+      name: raspberry-pi-4|devicetree|hw90641
+    needs:
+      - publish-pypi
+    runs-on: 
+      - self-hosted
+      - linux
+      - rpi4
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create virtual env and run tests
+      run: |
+         virtualenv venv
+         source venv/bin/activate
+         pip install --no-input mlx90641-driver-devicetree --upgrade
+         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-rpi4-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Raspberry Pi 4'
+    - uses: actions/upload-artifact@master
+      with:
+        name: test_report
+        path: public
+  test-on-hardware-linux-pc:
+    environment:
+      name: linux-pc|devicetree|hw90641
+    needs:
+      - publish-pypi
+    runs-on: 
+      - self-hosted
+      - linux
+      - ubuntu
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create virtual env and run tests
+      run: |
+         virtualenv venv
+         source venv/bin/activate
+         pip install --no-input mlx90641-driver-devicetree --upgrade
+         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-linux-pc-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-6 --metadata host_hardware 'Jetson Nano'
+    - uses: actions/upload-artifact@master
+      with:
+        name: test_report
+        path: public

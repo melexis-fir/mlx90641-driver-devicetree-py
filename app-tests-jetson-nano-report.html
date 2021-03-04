@@ -428,8 +428,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
     notFoundMessage.hidden = !allRowsHidden;
 }
 </script>
-    <h1>app-tests-rpi4-report.html</h1>
-    <p>Report generated on 04-Mar-2021 at 08:44:53 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h1>app-tests-jetson-nano-report.html</h1>
+    <p>Report generated on 04-Mar-2021 at 08:45:08 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -440,13 +440,13 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td>{"pluggy": "0.13.1", "py": "1.10.0", "pytest": "6.2.2"}</td></tr>
       <tr>
         <td>Platform</td>
-        <td>Linux-4.19.97-v7l+-armv7l-with-debian-10.3</td></tr>
+        <td>Linux-4.9.140-tegra-aarch64-with-Ubuntu-18.04-bionic</td></tr>
       <tr>
         <td>Plugins</td>
         <td>{"html": "3.1.1", "metadata": "1.11.0", "ordering": "0.6"}</td></tr>
       <tr>
         <td>Python</td>
-        <td>3.7.3</td></tr>
+        <td>3.6.9</td></tr>
       <tr>
         <td>device_tree</td>
         <td>/dev/i2c-1</td></tr>
@@ -455,9 +455,9 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td><a href="https://github.com/melexis-fir/mlx90641-driver-devicetree-py" target="_blank">https://github.com/melexis-fir/mlx90641-driver-devicetree-py</a></td></tr>
       <tr>
         <td>host_hardware</td>
-        <td>Raspberry Pi 4</td></tr></table>
+        <td>Jetson Nano</td></tr></table>
     <h2>Summary</h2>
-    <p>4 tests ran in 0.97 seconds. </p>
+    <p>4 tests ran in 1.28 seconds. </p>
     <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">4 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
@@ -472,7 +472,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">home/pi/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_class_declared</td>
+          <td class="col-name">home/mlx/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_class_declared</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -481,7 +481,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">home/pi/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_i2c_init</td>
+          <td class="col-name">home/mlx/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_i2c_init</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -490,7 +490,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">home/pi/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_refresh_rate_setting</td>
+          <td class="col-name">home/mlx/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_refresh_rate_setting</td>
           <td class="col-duration">0.01</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -499,10 +499,10 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">home/pi/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_dump_frame</td>
-          <td class="col-duration">0.55</td>
+          <td class="col-name">home/mlx/github/actions-runner/_work/mlx90641-driver-devicetree-py/mlx90641-driver-devicetree-py/tests/app_testing/test_init.py::test_dump_frame</td>
+          <td class="col-duration">0.70</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>03: 20.44,20.02,20.60,19.97,20.44,20.71,20.84,21.58,21.84,21.64,21.59,21.36,22.04,22.06,21.60,22.16,21.08,20.83,20.59,20.43,20.25,20.88,20.68,21.12,21.80,21.83,21.32,21.33,21.94,21.86,21.79,21.75,20.46,20.87,20.32,20.46,20.37,20.54,20.42,20.63,21.68,21.81,21.34,21.34,21.95,22.03,21.84,22.12,21.01,20.44,20.47,20.47,20.60,20.80,21.01,20.25,21.92,21.78,21.46,21.16,21.99,21.93,22.05,21.79,21.08,21.30,20.30,20.72,21.06,21.33,21.09,20.84,21.13,21.66,21.76,21.26,21.50,22.22,22.08,22.10,21.50,21.58,21.32,20.84,21.30,21.06,20.87,20.57,21.77,21.90,21.79,21.48,21.79,21.93,22.22,21.53,22.01,21.69,21.32,21.28,21.65,21.39,21.39,21.21,21.53,21.70,21.54,21.72,21.40,21.86,21.99,22.01,21.40,21.56,21.22,21.14,21.71,21.12,21.31,21.25,21.47,21.79,21.91,21.63,21.64,21.69,22.02,21.98,21.25,21.00,21.06,20.97,21.58,21.51,21.23,21.13,21.41,21.47,21.63,21.61,22.25,22.03,22.40,21.88,21.34,21.45,20.95,20.80,21.57,21.12,21.23,21.32,21.34,21.53,21.60,21.77,22.07,22.14,21.91,21.68,22.94,23.04,21.93,21.63,21.77,21.51,21.64,21.38,21.30,21.99,21.66,21.57,22.16,21.87,22.41,22.19,23.07,23.09,22.20,21.35,21.29,21.48,21.38,21.36,21.66,21.77,21.79,21.94,22.00,22.35,21.84,22.32
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>03: 20.98,21.20,21.36,20.87,21.01,21.29,21.30,21.06,21.38,21.32,21.44,21.55,21.34,21.31,21.61,21.65,20.93,21.15,20.79,20.87,20.71,21.07,21.21,21.26,21.45,21.27,21.36,21.56,21.40,21.71,21.69,21.55,21.14,21.16,21.21,21.07,20.66,21.32,21.42,21.35,21.37,21.29,21.35,21.35,21.44,21.71,21.56,21.59,20.95,21.12,21.15,21.18,20.99,21.36,21.22,21.64,21.18,21.45,21.33,21.57,21.33,21.53,21.69,21.68,20.80,21.16,21.30,21.20,21.03,21.39,21.55,21.40,21.43,21.09,21.34,21.49,21.62,21.16,21.63,21.57,21.22,20.96,21.31,21.14,21.30,21.35,21.50,21.43,21.40,21.38,21.42,21.20,21.32,21.24,21.65,21.53,21.28,21.14,21.22,21.55,21.44,21.60,21.60,21.65,21.53,21.40,21.33,21.37,21.55,21.21,21.62,21.68,21.81,22.49,22.89,21.57,21.27,21.61,21.29,21.51,21.64,21.43,21.45,21.39,21.32,21.34,21.71,21.79,21.79,22.33,22.29,21.61,21.19,21.41,21.38,21.64,21.49,21.36,21.46,21.50,21.49,21.47,21.83,21.59,21.52,22.04,21.42,21.83,21.42,21.53,21.63,21.67,21.72,21.48,21.54,21.61,21.64,21.66,21.68,22.18,21.42,21.79,21.39,21.62,21.43,21.43,21.52,21.59,21.79,21.60,21.91,21.89,21.66,21.95,21.73,21.36,21.21,21.43,21.54,21.55,21.27,21.51,21.57,21.47,21.60,21.57,21.83,21.84,21.62,21.75,21.89,21.92
 <br/></div></td></tr></tbody></table></body></html>

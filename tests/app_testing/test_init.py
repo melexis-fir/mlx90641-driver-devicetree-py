@@ -1,28 +1,34 @@
 import pytest
-from mlx90641_devicetree import *
+import mlx90641_devicetree
+import mlx90641
 
 order=0000
 dev = None
 
 
 @pytest.mark.run(order=order+0)
-def test_class_declared():
-    global dev
-    dev = MLX90641()
+def test_version():
+    print ('mlx90641-driver-devicetree version: {}'.format(mlx90641_devicetree.__version__))
 
 
 @pytest.mark.run(order=order+1)
+def test_class_declared():
+    global dev
+    dev = mlx90641.MLX90641()
+
+
+@pytest.mark.run(order=order+2)
 def test_i2c_init(metadata):
     global dev
     
     # make sure we have the metadata variable set up!
-    assert 'device_tree' in metadata
+    assert 'i2c_port' in metadata
 
-    r = dev.i2c_init(metadata['device_tree'])
+    r = dev.i2c_init(metadata['i2c_port'])
     assert r == None
 
 
-@pytest.mark.run(order=order+2)
+@pytest.mark.run(order=order+3)
 def test_refresh_rate_setting():
     global dev
 
@@ -33,7 +39,7 @@ def test_refresh_rate_setting():
     assert dev.get_refresh_rate() == 4
 
 
-@pytest.mark.run(order=order+3)
+@pytest.mark.run(order=order+4)
 def test_dump_frame():
     global dev
 

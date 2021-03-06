@@ -1,5 +1,7 @@
-from mlx90641 import *
-from .devicetree import *
+from .devicetree import load_driver
 
 
 load_driver()
+
+
+__version__ = "1.2.1"

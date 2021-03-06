@@ -58,28 +58,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-  test-on-hardware-jetson-nano:
-    environment:
-      name: jetson-nano|devicetree|hw90641
-    needs:
-      - test-unittesting
-    runs-on: 
-      - self-hosted
-      - linux
-      - jetson-nano
-    steps:
-    - uses: actions/checkout@v2
-    - name: Create virtual env and run tests
-      run: |
-         virtualenv venv
-         source venv/bin/activate
-         pip install --no-input mlx90641-driver-devicetree --upgrade
-         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
-         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-jetson-nano-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
-    - uses: actions/upload-artifact@master
-      with:
-        name: test_report
-        path: public
   test-on-hardware-raspberry-pi-4:
     environment:
       name: raspberry-pi-4|devicetree|hw90641
@@ -91,13 +69,49 @@ jobs:
       - rpi4
     steps:
     - uses: actions/checkout@v2
-    - name: Create virtual env and run tests
+    - uses: actions/download-artifact@master
+      with:
+        name: libraries
+        path: devicetree/libs
+    - name: Create virtual env and install requirements
       run: |
          virtualenv venv
          source venv/bin/activate
-         pip install --no-input mlx90641-driver-devicetree --upgrade
+         pip install --no-input .
          pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
-         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-rpi4-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata device_tree /dev/i2c-1 --metadata host_hardware 'Raspberry Pi 4'
+    - name: run tests
+      run: |
+         source venv/bin/activate
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-rpi4-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata i2c_port /dev/i2c-1 --metadata host_hardware 'Raspberry Pi 4'
+    - uses: actions/upload-artifact@master
+      with:
+        name: test_report
+        path: public
+  test-on-hardware-jetson-nano:
+    environment:
+      name: jetson-nano|devicetree|hw90641
+    needs:
+      - test-unittesting
+    runs-on: 
+      - self-hosted
+      - linux
+      - jetson-nano
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@master
+      with:
+        name: libraries
+        path: devicetree/libs
+    - name: Create virtual env and install requirements
+      run: |
+         virtualenv venv
+         source venv/bin/activate
+         pip install --no-input .
+         pip install --no-input pytest pytest-ordering pytest-html pytest-metadata
+    - name: run tests
+      run: |
+         source venv/bin/activate
+         python -m pytest -v tests/app_testing -p no:cacheprovider --html=public/app-tests-jetson-nano-report.html --self-contained-html --metadata homepage https://github.com/melexis-fir/mlx90641-driver-devicetree-py --metadata i2c_port /dev/i2c-1 --metadata host_hardware 'Jetson Nano'
     - uses: actions/upload-artifact@master
       with:
         name: test_report
@@ -107,8 +121,8 @@ jobs:
     runs-on: ubuntu-latest
     if:   github.event_name == 'release' && github.event.action == 'created'
     needs:
-      - test-on-hardware-jetson-nano
       - test-on-hardware-raspberry-pi-4
+      - test-on-hardware-jetson-nano
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@master

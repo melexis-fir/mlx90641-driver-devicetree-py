@@ -1,4 +1,5 @@
 from mlx90641_devicetree import *
+from mlx90641 import *
 
 
 def main():

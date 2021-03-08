@@ -34,13 +34,13 @@ And easy way to do this is by adding the user to the group `i2c`.
 * Open a terminal and run following command:  
 
 ```bash
-mlx90641-dump-devicetree /dev/i2c-1
+mlx90641-devicetree-dump /dev/i2c-1
 ```
 
 This program takes 1 optional argument.
 
 ```bash
-mlx90641-dump-devicetree <communication-port>
+mlx90641-devicetree-dump <communication-port>
 ```
 
 Note: this dump command is not yet available!
